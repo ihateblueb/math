@@ -13,12 +13,12 @@ class Combination {
 
 	@Test
 	fun testCombination2() {
-		assertEquals(270725L, 6 nCr 2)
+		assertEquals(15L, 6 nCr 2)
 	}
 
 	@Test
 	fun testCombination3() {
-		assertEquals(270725L, 20 nCr 4)
+		assertEquals(4845L, 20 nCr 4)
 	}
 
 	@Test

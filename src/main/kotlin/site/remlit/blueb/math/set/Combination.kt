@@ -7,16 +7,10 @@ infix fun Int.nCr(r: Int): Long {
 	val n = this
 
 	if (n < r)
-		throw IllegalArgumentException("n must be greater or equal to r")
+        throw IllegalArgumentException("n must be greater or equal to r")
 
 	if (r == n)
-		return factorial { n }
+        return factorial { n }
 
-	val ff = factorial { n }
-	val fnr = factorial { (n-r) }
-	val fr = factorial { r }
-
-	println("n: $n; ff: $ff; fnr: $fnr; fr: $fr; fnrfr: ${fnr * fr};")
-
-	return (ff).div(fnr * fr)
+	return factorial { n } / (factorial { n-r } * factorial { r })
 }
