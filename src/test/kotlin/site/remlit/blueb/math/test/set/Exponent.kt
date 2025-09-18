@@ -1,6 +1,6 @@
 package site.remlit.blueb.math.test.set
 
-import site.remlit.blueb.math.set.exp
+import site.remlit.blueb.math.generic.exp
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

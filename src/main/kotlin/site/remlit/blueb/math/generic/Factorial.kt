@@ -1,4 +1,4 @@
-package site.remlit.blueb.math.set
+package site.remlit.blueb.math.generic
 
 /**
  * Calculates the value of a factorial.

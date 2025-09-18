@@ -1,4 +1,4 @@
-package site.remlit.blueb.math.set
+package site.remlit.blueb.math.generic
 
 /**
  * Calculate the number of possible combinations of n to r where order does not matter.
@@ -17,5 +17,5 @@ infix fun Int.nCr(r: Int): Long {
 	if (r == n)
         return factorial { n }
 
-	return factorial { n } / (factorial { n-r } * factorial { r })
+	return factorial { n } / (factorial { n - r } * factorial { r })
 }

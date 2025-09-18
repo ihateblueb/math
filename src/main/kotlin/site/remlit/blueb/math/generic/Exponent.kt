@@ -1,4 +1,4 @@
-package site.remlit.blueb.math.set
+package site.remlit.blueb.math.generic
 
 private fun exp(y: Long, x: Int): Long {
     var num = y
