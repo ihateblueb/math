@@ -15,133 +15,154 @@ fun <T> nullSet(): Set<T> =
  * @param set List representation of set
  * */
 class Set<T>(set: List<T>) {
-    init {
-        if (
-            !set.isEmpty() &&
-            set[0] !is Int &&
-            set[0] !is String
-        ) throw IllegalArgumentException("Set must be Int or String")
+	init {
+		if (
+			!set.isEmpty() &&
+			set[0] !is Int &&
+			set[0] !is String
+		) throw IllegalArgumentException("Set must be Int or String")
 
-        if (set.size != set.distinct().size)
-            throw IllegalArgumentException("Set contains duplicates")
-    }
+		if (set.size != set.distinct().size)
+			throw IllegalArgumentException("Set contains duplicates")
+	}
 
-    /**
-     * Size of a list
-     * */
-    val cardinality = set.size
+	/**
+	 * Size of a list
+	 * */
+	val cardinality = set.size
 
-    /**
-     * Number of possible subsets this set could have
-     * */
-    val possibleSubsets = 2 exp cardinality
+	/**
+	 * Number of possible subsets this set could have
+	 * */
+	val possibleSubsets = 2 exp cardinality
 
-    /**
-     * List representation of set
-     * */
-    val list = set
+	/**
+	 * List representation of set
+	 * */
+	val list = set
 
-    /**
-     * Adds together the elements of the sets.
-     *
-     * @param x Other set
-     *
-     * @return Set containing the elements of this one and the other set
-     * */
-    infix fun union(x: Set<T>): Set<T> {
-        val result = mutableListOf<T>()
+	/**
+	 * Adds together the elements of the sets.
+	 *
+	 * @param x Other set
+	 *
+	 * @return Set containing the elements of this one and the other set
+	 * */
+	infix fun union(x: Set<T>): Set<T> {
+		val result = mutableListOf<T>()
 
-        for (element in list) {
-            result.add(element)
-        }
+		for (element in list) {
+			result.add(element)
+		}
 
-        for (element in x.list) {
-            result.add(element)
-        }
+		for (element in x.list) {
+			result.add(element)
+		}
 
-        return Set(
-            result.distinct().toList()
-        )
-    }
+		return Set(
+			result.distinct().toList().sortedBy { it?.toString() }
+		)
+	}
 
-    /**
-     * Finds the overlap between the sets.
-     *
-     * @param x Other set
-     *
-     * @return Set containing the elements that overlap between these two sets
-     * */
-    infix fun intersection(x: Set<T>): Set<T> {
-        val result = mutableSetOf<T>()
+	/**
+	 * Finds the overlap between the sets.
+	 *
+	 * @param x Other set
+	 *
+	 * @return Set containing the elements that overlap between these two sets
+	 * */
+	infix fun intersection(x: Set<T>): Set<T> {
+		val result = mutableSetOf<T>()
 
-        val map = mutableMapOf<T, Int>()
+		val map = mutableMapOf<T, Int>()
 
-        for (element in list)
-            map[element] = 1
+		for (element in list)
+			map[element] = 1
 
-        for (element in x.list) {
-            if (map.contains(element)) {
-                map[element] = map[element]!! + 1
-            } else {
-                map[element] = 1
-            }
-        }
+		for (element in x.list) {
+			if (map.contains(element)) {
+				map[element] = map[element]!! + 1
+			} else {
+				map[element] = 1
+			}
+		}
 
-        for (element in map)
-            if (element.value > 1)
-                result.add(element.key)
+		for (element in map)
+			if (element.value > 1)
+				result.add(element.key)
 
-        return Set(
-            result.distinct().toList()
-        )
-    }
+		return Set(
+			result.distinct().toList().sortedBy { it?.toString() }
+		)
+	}
 
-    /**
-     * Removes the items from this set that are in the other set.
-     *
-     * @param x Other set
-     *
-     * @return Set containing the elements that weren't in the other set
-     * */
-    infix fun diff(x: Set<T>): Set<T> {
-        val results = mutableListOf<T>()
+	/**
+	 * Removes the items from this set that are in the other set.
+	 *
+	 * @param x Other set
+	 *
+	 * @return Set containing the elements that weren't in the other set
+	 * */
+	infix fun diff(x: Set<T>): Set<T> {
+		val result = mutableListOf<T>()
 
-        for (element in this.list)
-            if (!x.list.contains(element))
-                results.add(element)
+		for (element in this.list)
+			if (!x.list.contains(element))
+				result.add(element)
 
-        return Set(
-            results.distinct().toList()
-        )
-    }
+		return Set(
+			result.distinct().toList().sortedBy { it?.toString() }
+		)
+	}
 
-    /**
-     * Determine if intersection of two sets is disjoint.
-     *
-     * @param x Other set
-     *
-     * @return If the sets are disjoint or not
-     * */
-    infix fun isDisjoint(x: Set<T>): Boolean =
-        (this intersection x).list.isEmpty()
+	/**
+	 * Determine if intersection of two sets is disjoint.
+	 *
+	 * @param x Other set
+	 *
+	 * @return If the sets are disjoint or not
+	 * */
+	infix fun isDisjoint(x: Set<T>): Boolean =
+		(this intersection x).list.isEmpty()
 
-    /**
-     * Finds the elements that belong in one of the sets but not both of the sets.
-     *
-     * @param x Other set
-     *
-     * @return Elements not belonging in both of the sets
-     * */
-    infix fun symmetricDiff(x: Set<T>): Set<T> = TODO()
+	/**
+	 * Finds the elements that belong in one of the sets but not both of the sets.
+	 *
+	 * @param x Other set
+	 *
+	 * @return Elements not belonging in both of the sets
+	 * */
+	infix fun symmetricDiff(x: Set<T>): Set<T> = TODO()
 
-    /**
-     * Finds the complement of this set. The complement is the items of the universal set, without the items from this set.
-     *
-     * @param u Universal set
-     *
-     * @return Complement set
-     * */
-    infix fun complement(u: Set<T>): Set<T> = u diff this
+	/**
+	 * Finds the complement of this set. The complement is the items of the universal set, without the items from this set.
+	 *
+	 * @param u Universal set
+	 *
+	 * @return Complement set
+	 * */
+	infix fun complement(u: Set<T>): Set<T> =
+		u diff this
+
+	/**
+	 * Determines if sets are equal, meaning they have the same length and content.
+	 *
+	 * @param x Other set
+	 *
+	 * @return If equal
+	 * */
+	infix fun equal(x: Set<T>): Boolean =
+		this.list.sortedBy { it?.toString() } == x.list.sortedBy { it?.toString() }
+
+	/**
+	 * Determines if sets are equivalent, meaning they have the same length.
+	 *
+	 * @param x Other set
+	 *
+	 * @return If equivalent
+	 * */
+	infix fun equivalent(x: Set<T>): Boolean =
+		this.cardinality == x.cardinality
 }
 
 /**
@@ -157,7 +178,9 @@ fun <T> createUniversalSet(vararg sets: Set<T>): Set<T> {
     for (set in sets)
         set.list.forEach { u.add(it) }
 
-    return Set(u.distinct())
+    return Set(
+	    u.distinct().toList().sortedBy { it?.toString() }
+	)
 }
 
 /**

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import site.remlit.blueb.math.set.*
+import site.remlit.blueb.math.util.reportAnswer
 import kotlin.test.assertEquals
 
 class Set {
@@ -94,11 +95,6 @@ class Set {
 
     /* Real Problems */
 
-    fun <T> reportAnswer(
-        num: Int,
-        ans: site.remlit.blueb.math.set.Set<T>
-    ) = println("$num: ${ans.list}")
-
     @Test
     fun allRealProblems() {
         realProblem3()
@@ -128,6 +124,9 @@ class Set {
         ))
 
         val u = createUniversalSet(a, b, c, d, e, f)
+
+	    assertEquals(true, c equal d)
+	    assertEquals(true, a equivalent e)
 
         reportAnswer(51, a intersection c)
         reportAnswer(52, f intersection e)
@@ -200,5 +199,7 @@ class Set {
         reportAnswer(36, (a intersection b) complement u)
         reportAnswer(37, (a complement u) union (c complement u))
         reportAnswer(38, (a complement u) union (b complement u))
+	    reportAnswer(39, (a union b) complement u)
+	    reportAnswer(40, (a union c) complement u)
     }
  }
