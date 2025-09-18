@@ -1,4 +1,4 @@
-package site.remlit.blueb.math.test.set
+package site.remlit.blueb.math.test.generic
 
 import site.remlit.blueb.math.generic.e
 import kotlin.test.Test

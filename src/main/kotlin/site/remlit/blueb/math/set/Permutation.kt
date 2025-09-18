@@ -1,4 +1,6 @@
-package site.remlit.blueb.math.generic
+package site.remlit.blueb.math.set
+
+import site.remlit.blueb.math.generic.factorial
 
 /**
  * Calculate the number of possible permutations of n to r where order does matter.

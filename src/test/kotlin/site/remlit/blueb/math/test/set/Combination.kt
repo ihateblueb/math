@@ -1,7 +1,7 @@
 package site.remlit.blueb.math.test.set
 
 import org.junit.jupiter.api.assertThrows
-import site.remlit.blueb.math.generic.nCr
+import site.remlit.blueb.math.set.nCr
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

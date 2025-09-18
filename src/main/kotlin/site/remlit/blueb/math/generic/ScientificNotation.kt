@@ -7,6 +7,5 @@ package site.remlit.blueb.math.generic
  *
  * @return Long number
  * */
-infix fun Double.e(x: Int): Double {
-    return this * (10 exp x)
-}
+infix fun Double.e(x: Int): Double =
+    this * (10 exp x)
