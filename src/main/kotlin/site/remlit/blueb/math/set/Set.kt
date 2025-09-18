@@ -1,13 +1,12 @@
 package site.remlit.blueb.math.set
 
 import site.remlit.blueb.math.generic.exp
-import kotlin.collections.get
 
 /**
  * A null set. Contains no elements and has a cardinality of 0.
  * */
-val NullSet: Set<Int> =
-    Set(emptyList<Int>())
+fun <T> nullSet(): Set<T> =
+    Set(emptyList<T>())
 
 /**
  * Class representing a mathematical set.
@@ -17,8 +16,11 @@ val NullSet: Set<Int> =
  * */
 class Set<T>(set: List<T>) {
     init {
-        if (set[0] !is Int && set[0] !is String)
-            throw IllegalArgumentException("Set must be Int or String")
+        if (
+            !set.isEmpty() &&
+            set[0] !is Int &&
+            set[0] !is String
+        ) throw IllegalArgumentException("Set must be Int or String")
 
         if (set.size != set.distinct().size)
             throw IllegalArgumentException("Set contains duplicates")
@@ -104,14 +106,14 @@ class Set<T>(set: List<T>) {
     infix fun diff(x: Set<T>): Set<T> = TODO()
 
     /**
-     * Determine if union of two sets is disjoint.
+     * Determine if intersection of two sets is disjoint.
      *
      * @param x Other set
      *
      * @return If the sets are disjoint or not
      * */
     infix fun isDisjoint(x: Set<T>): Boolean =
-        this union x == NullSet
+        (this intersection x).list.isEmpty()
 
     /**
      * Finds the elements that belong in one of the sets but not both of the sets.

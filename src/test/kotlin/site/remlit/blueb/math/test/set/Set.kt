@@ -78,8 +78,17 @@ class Set {
     fun doStringIntersection() {
         val one = Set(listOf("orange", "banana", "apple", "plum"))
         val two = Set(listOf("apple", "plum", "peach"))
-        val union = Set(listOf("apple", "plum"))
+        val intersection = Set(listOf("apple", "plum"))
 
-        assertEquals(union.list, (one intersection two).list)
+        assertEquals(intersection.list, (one intersection two).list)
+    }
+
+    @Test
+    fun doDisjointIntersection() {
+        val one = Set(listOf(1, 2, 3, 4))
+        val two = Set(listOf(10, 12, 13))
+
+        assertEquals(nullSet<Int>().list, (one intersection two).list)
+        assertEquals(true, (one isDisjoint two))
     }
  }
