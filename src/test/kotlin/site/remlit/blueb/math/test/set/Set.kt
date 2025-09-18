@@ -199,4 +199,34 @@ class Set {
         val p72 = (h intersection k) diff j complement u
         println("72: " + p72.list)
     }
+
+    @Test
+    fun realProblem3() {
+        val a = Set(listOf(
+            "a", "g", "h"
+        ))
+        val b = Set(listOf(
+            "b", "g", "h"
+        ))
+        val c = Set(listOf(
+            "b", "c", "d", "e", "f"
+        ))
+
+        val u = createUniversalSet(a, b, c)
+
+        val p25 = a intersection b
+        val p26 = b intersection c
+        val p27 = a union b
+        val p28 = b union c
+        val p29 = a complement u
+        val p30 = b complement u
+        val p31 = (a complement u) intersection (b complement u)
+        val p32 = (b complement u) intersection c
+        val p33 = a union (c complement u)
+        val p34 = b union (c complement u)
+        val p35 = (a intersection c) complement u
+        val p36 = (a intersection b) complement u
+        val p37 = (a complement u) union (c complement u)
+        val p38 = (a complement u) union (b complement u)
+    }
  }
