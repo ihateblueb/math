@@ -1,19 +1,29 @@
 package site.remlit.blueb.math.set
 
 import site.remlit.blueb.math.generic.exp
+import kotlin.collections.get
 
 /**
  * A null set. Contains no elements and has a cardinality of 0.
  * */
-val NullSet: Set<Nothing> =
-    Set(emptyList<Nothing>())
+val NullSet: Set<Int> =
+    Set(emptyList<Int>())
 
 /**
  * Class representing a mathematical set.
+ * List type must be either Int or String
  *
  * @param set List representation of set
  * */
 class Set<T>(set: List<T>) {
+    init {
+        if (set[0] !is Int && set[0] !is String)
+            throw IllegalArgumentException("Set must be Int or String")
+
+        if (set.size != set.distinct().size)
+            throw IllegalArgumentException("Set contains duplicates")
+    }
+
     /**
      * Size of a list
      * */
@@ -67,15 +77,6 @@ class Set<T>(set: List<T>) {
         this union x == NullSet
 
     /**
-     * Finds the complement of this set. The complement is the items of the universal set, without the items from this set.
-     *
-     * @param u Universal set
-     *
-     * @return Complement set
-     * */
-    fun complement(u: Set<T>): Set<T> = TODO()
-
-    /**
      * Finds the elements that belong in one of the sets but not both of the sets.
      *
      * @param x Other set
@@ -83,16 +84,25 @@ class Set<T>(set: List<T>) {
      * @return Elements not belonging in both of the sets
      * */
     infix fun symmetricDiff(x: Set<T>): Set<T> = TODO()
+
+    /**
+     * Finds the complement of this set. The complement is the items of the universal set, without the items from this set.
+     *
+     * @param u Universal set
+     *
+     * @return Complement set
+     * */
+    fun complement(u: Set<T>): Set<T> = TODO()
 }
 
 /**
  * Creates a universal set from a list of sets.
  *
- * @param sets List of sets
+ * @param sets Multiple sets
  *
  * @return Set with distinct elements from each passed set
  * */
-fun <T> createUniversalSet(sets: List<Set<T>>): Set<T> {
+fun <T> createUniversalSet(vararg sets: Set<T>): Set<T> {
     val u = mutableListOf<T>()
 
     for (set in sets)
