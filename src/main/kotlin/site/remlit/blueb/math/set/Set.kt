@@ -103,7 +103,16 @@ class Set<T>(set: List<T>) {
      *
      * @return Set containing the elements that weren't in the other set
      * */
-    infix fun diff(x: Set<T>): Set<T> = TODO()
+    infix fun diff(x: Set<T>): Set<T> {
+        val results = mutableListOf<T>()
+
+        for (element in x.list)
+            if (!x.list.contains(element)) results.add(element)
+
+        return Set(
+            results.distinct().toList()
+        )
+    }
 
     /**
      * Determine if intersection of two sets is disjoint.
@@ -131,7 +140,7 @@ class Set<T>(set: List<T>) {
      *
      * @return Complement set
      * */
-    fun complement(u: Set<T>): Set<T> = TODO()
+    infix fun complement(u: Set<T>): Set<T> = u diff this
 }
 
 /**
