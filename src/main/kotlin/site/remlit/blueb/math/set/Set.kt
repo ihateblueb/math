@@ -106,8 +106,9 @@ class Set<T>(set: List<T>) {
     infix fun diff(x: Set<T>): Set<T> {
         val results = mutableListOf<T>()
 
-        for (element in x.list)
-            if (!x.list.contains(element)) results.add(element)
+        for (element in this.list)
+            if (!x.list.contains(element))
+                results.add(element)
 
         return Set(
             results.distinct().toList()

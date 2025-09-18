@@ -135,6 +135,15 @@ class Set {
 
         val p57 = a union c
         println("57: " + p57.list)
+
+        val p58 = b diff c
+        println("58: " + p58.list)
+
+        val p59 = a diff c
+        println("59: " + p59.list)
+
+        val p60 = b complement u
+        println("60: " + p60.list)
     }
 
     @Test
