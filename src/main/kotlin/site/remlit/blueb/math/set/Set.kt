@@ -46,7 +46,21 @@ class Set<T>(set: List<T>) {
      *
      * @return Set containing the elements of this one and the other set
      * */
-    infix fun union(x: Set<T>): Set<T> = TODO()
+    infix fun union(x: Set<T>): Set<T> {
+        val result = mutableListOf<T>()
+
+        for (element in list) {
+            result.add(element)
+        }
+
+        for (element in x.list) {
+            result.add(element)
+        }
+
+        return Set(
+            result.distinct().toList()
+        )
+    }
 
     /**
      * Finds the overlap between the sets.
@@ -55,7 +69,30 @@ class Set<T>(set: List<T>) {
      *
      * @return Set containing the elements that overlap between these two sets
      * */
-    infix fun intersection(x: Set<T>): Set<T> = TODO()
+    infix fun intersection(x: Set<T>): Set<T> {
+        val result = mutableSetOf<T>()
+
+        val map = mutableMapOf<T, Int>()
+
+        for (element in list)
+            map[element] = 1
+
+        for (element in x.list) {
+            if (map.contains(element)) {
+                map[element] = map[element]!! + 1
+            } else {
+                map[element] = 1
+            }
+        }
+
+        for (element in map)
+            if (element.value > 1)
+                result.add(element.key)
+
+        return Set(
+            result.distinct().toList()
+        )
+    }
 
     /**
      * Removes the items from this set that are in the other set.
