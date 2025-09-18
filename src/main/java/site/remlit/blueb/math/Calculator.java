@@ -8,16 +8,20 @@ public class Calculator {
     public static Map<String, String> memory = Collections.emptyMap();
 
     public static void main(String[] args) {
+        System.out.println("Now accepting input.");
+
         Scanner scanner =  new Scanner(System.in);
 
-        try {
-            while (true) {
+        while (true) {
+            try {
                 String line = scanner.nextLine();
                 if (line.equals("exit")) return;
                 eval(line);
+            } catch (Exception ex) {
+                System.out.println(
+                        ex.getClass().getSimpleName() + ": " + ex.getMessage()
+                );
             }
-        } catch (Exception ex) {
-            System.out.println("ERROR: " + ex.getMessage());
         }
     }
 
@@ -28,7 +32,14 @@ public class Calculator {
             return;
         }
 
-        String[] split = expression.split("");
+        if (expression.isBlank()) {
+            System.out.println("Empty expression.");
+            return;
+        }
+
+        String[] split = expression
+                .replace(" ", "")
+                .split("");
         ArrayList<Token> tokens = new ArrayList<>();
 
         for (String token : split) {
@@ -51,6 +62,9 @@ public class Calculator {
                     break;
                 case ".":
                     tokens.add(Token.PERIOD);
+                    break;
+                case "!":
+                    tokens.add(Token.EXCLAMATION);
                     break;
 
                 case "=":
@@ -102,6 +116,9 @@ public class Calculator {
                 case "9":
                     tokens.add(Token.DIGIT_NINE);
                     break;
+
+                default:
+                    throw new SyntaxException("Unknown token '"+token+"'");
             }
         }
 

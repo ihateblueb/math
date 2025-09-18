@@ -8,6 +8,7 @@ public enum Token {
 
     COMMA,
     PERIOD,
+    EXCLAMATION,
 
     EQUAL,
     PLUS,
