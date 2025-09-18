@@ -163,6 +163,9 @@ class Set<T>(set: List<T>) {
 	 * */
 	infix fun equivalent(x: Set<T>): Boolean =
 		this.cardinality == x.cardinality
+
+	override fun toString(): String =
+		"{" + list.joinToString(", ") + "}"
 }
 
 /**
