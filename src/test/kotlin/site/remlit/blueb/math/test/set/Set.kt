@@ -94,6 +94,18 @@ class Set {
 
     /* Real Problems */
 
+    fun <T> reportAnswer(
+        num: Int,
+        ans: site.remlit.blueb.math.set.Set<T>
+    ) = println("$num: ${ans.list}")
+
+    @Test
+    fun allRealProblems() {
+        realProblem3()
+        realProblem()
+        realProblem2()
+    }
+
     @Test
     fun realProblem() {
         val a = Set(listOf(
@@ -117,35 +129,16 @@ class Set {
 
         val u = createUniversalSet(a, b, c, d, e, f)
 
-        val p51 = a intersection c
-        println("51: " + p51.list)
-
-        val p52 = f intersection e
-        println("52: " + p52.list)
-
-        val p53 = c intersection e
-        println("53: " + p53.list)
-
-        val p54 = a intersection b intersection c
-        println("54: " + p54.list)
-
-        val p55 = e union f
-        println("55: " + p55.list)
-
-        val p56 = c union e
-        println("56: " + p56.list)
-
-        val p57 = a union c
-        println("57: " + p57.list)
-
-        val p58 = b diff c
-        println("58: " + p58.list)
-
-        val p59 = a diff c
-        println("59: " + p59.list)
-
-        val p60 = b complement u
-        println("60: " + p60.list)
+        reportAnswer(51, a intersection c)
+        reportAnswer(52, f intersection e)
+        reportAnswer(53, c intersection e)
+        reportAnswer(54, a intersection b intersection c)
+        reportAnswer(55, e union f)
+        reportAnswer(56, c union e)
+        reportAnswer(57, a union c)
+        reportAnswer(58, b diff c)
+        reportAnswer(59, a diff c)
+        reportAnswer(60, b complement u)
     }
 
     @Test
@@ -165,41 +158,18 @@ class Set {
 
         val u = createUniversalSet(g, h, j, k)
 
-        val p61 = h complement u
-        println("61: " + p61.list)
-
-        val p62 = (g union j) complement u
-        println("62: " + p62.list)
-
-        val p63 = (g complement u) union (j complement u)
-        println("63: " + p63.list)
-
-        val p64 = k diff h
-        println("64: " + p64.list)
-
-        val p65 = (h intersection k) complement u
-        println("65: " + p65.list)
-
-        val p66 = (h complement u) union (k complement u)
-        println("66: " + p66.list)
-
-        val p67 = g union h union j
-        println("67: " + p67.list)
-
-        val p68 = g intersection h intersection k
-        println("68: " + p68.list)
-
-        val p69 = k diff (g union h)
-        println("69: " + p69.list)
-
-        val p70 = g intersection (h union j)
-        println("70: " + p70.list)
-
-        val p71 = (j intersection k) diff g
-        println("71: " + p71.list)
-
-        val p72 = (h intersection k) diff j complement u
-        println("72: " + p72.list)
+        reportAnswer(61, h complement u)
+        reportAnswer(62, (g union j) complement u)
+        reportAnswer(63, (g complement u) union (j complement u))
+        reportAnswer(64, k diff h)
+        reportAnswer(65, (h intersection k) complement u)
+        reportAnswer(66, (h complement u) union (k complement u))
+        reportAnswer(67, g union h union j)
+        reportAnswer(68, g intersection h intersection k)
+        reportAnswer(69, k diff (g union h))
+        reportAnswer(70, g intersection (h union j))
+        reportAnswer(71, (j intersection k) diff g)
+        reportAnswer(72, (h intersection k) diff j complement u)
     }
 
     @Test
@@ -216,19 +186,19 @@ class Set {
 
         val u = createUniversalSet(a, b, c)
 
-        val p25 = a intersection b
-        val p26 = b intersection c
-        val p27 = a union b
-        val p28 = b union c
-        val p29 = a complement u
-        val p30 = b complement u
-        val p31 = (a complement u) intersection (b complement u)
-        val p32 = (b complement u) intersection c
-        val p33 = a union (c complement u)
-        val p34 = b union (c complement u)
-        val p35 = (a intersection c) complement u
-        val p36 = (a intersection b) complement u
-        val p37 = (a complement u) union (c complement u)
-        val p38 = (a complement u) union (b complement u)
+        reportAnswer(25, a intersection b)
+        reportAnswer(26, b intersection c)
+        reportAnswer(27, a union b)
+        reportAnswer(28, b union c)
+        reportAnswer(29, a complement u)
+        reportAnswer(30, b complement u)
+        reportAnswer(31, (a complement u) intersection (b complement u))
+        reportAnswer(32, (b complement u) intersection c)
+        reportAnswer(33, a union (c complement u))
+        reportAnswer(34, b union (c complement u))
+        reportAnswer(35, (a intersection c) complement u)
+        reportAnswer(36, (a intersection b) complement u)
+        reportAnswer(37, (a complement u) union (c complement u))
+        reportAnswer(38, (a complement u) union (b complement u))
     }
  }
